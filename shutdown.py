@@ -12,7 +12,7 @@ def shutdownComputer(secret):
 
 def standByComputer(secret):
 
-    if secret != getSecret("M1s33nV31lle"):
+    if secret != getSecret("StandBy"):
         return
 
     command = "rundll32.exe powrprof.dll,SetSuspendState 0,1,0"
