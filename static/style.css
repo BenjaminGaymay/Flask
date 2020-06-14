@@ -1,0 +1,82 @@
+.order {
+	margin: 0.5% 0 0.5% 0;
+}
+
+.separator {
+	margin-top: 5%;
+	margin-bottom: 2%;
+	border-radius: .25rem;
+}
+
+#firstSep {
+	margin-top: 0;
+}
+
+nav.jumbotron {
+	padding: 1rem 2rem;
+	padding-bottom: 0;
+	background-color: #fff;
+
+}
+
+footer {
+	width: 100%;
+}
+
+footer.jumbotron {
+	margin-bottom: 0;
+	padding: 0.5rem 2rem;
+	background-color: #fff;
+}
+
+.playlist-btn {
+	cursor: pointer;
+}
+
+.playlist-div {
+	display: none;
+}
+
+.music {
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+
+@media screen and (max-width: 959px) {
+
+	#anchor-list {
+		display: none;
+	}
+
+	smallRes {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		margin-bottom: 2%;
+	}
+
+	chevron {
+		border: double #007bff;
+		border-width: 0 3px 3px 0;
+		display: inline-block;
+		padding: 3px;
+	}
+
+	chevron:hover {
+		padding-top: 2px;
+		border-width: 0 4px 4px 0;
+	}
+
+	.chevron-up {
+		transform: rotate(-135deg);
+		-webkit-transform: rotate(-135deg);
+	}
+
+	.chevron-down {
+
+		transform: rotate(45deg);
+		-webkit-transform: rotate(45deg);
+		text-align: center;
+	}
+}

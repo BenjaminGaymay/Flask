@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- <link rel="icon" href=""> -->
+
+    <title> Music manager </title>
+
+    <link href="{{url_for('static', filename='bootstrap.min.css')}}" rel="stylesheet">
+    <link href="{{url_for('static', filename='bootstrap3_player.css')}}" rel="stylesheet">
+    <link href="{{url_for('static', filename='open-iconic-bootstrap.min.css')}}" rel="stylesheet">
+    <link href="{{url_for('static', filename='open-iconic.css')}}" rel="stylesheet">
+    <link href="{{url_for('static', filename='style.css')}}" rel="stylesheet">
+  </head>
+
+  <body>
+
+    <div class="container">
+      <header>
+        <nav class="fixed-top align-bottom jumbotron">
+          <div id="anchor-list">
+            <ul class="pagination justify-content-center align-content-start flex-wrap alpha" id="alpha-list">
+
+              {% for index in musics_by_alpha.keys() %}
+                <li class="page-item alpha"><a href="#{{ index }}" class="page-link"> {{ index }} </a></li>
+              {% endfor %}
+
+            </ul>
+
+            <ul class="pagination justify-content-center align-content-start flex-wrap date d-none">
+
+              {% for index in musics_by_date.keys() %}
+                <li class="page-item"><a href="#{{ "Date_" + loop.index|string }}" class="page-link"> {{ musics_by_date[index][0]["date"] }} </a></li>
+              {% endfor %}
+
+            </ul>
+
+            <ul class="pagination justify-content-center align-content-start flex-wrap playlist d-none">
+
+              {% for index in musics_by_playlist.keys() %}
+                <li class="page-item"><a href="#{{ "Playlist_" + loop.index|string }}" class="page-link playlist-btn" id="{{ "Playlist_" + loop.index|string + "-btn" }}"> {{ index }} </a></li>
+              {% endfor %}
+
+            </ul>
+          </div>
+
+          <smallRes> <chevron class="chevron-down"></chevron> </smallRes>
+
+          <form class="form-inline justify-content-center mb-3 search d-none">
+            <div class="form-group mx-sm-3">
+              <input type="text" name="research" class="form-control" id="research">
+            </div>
+          </form>
+
+          <div class="text-center mb-4">
+            <button class="btn btn-primary btn-sm order" id="alpha-btn" disabled> Ordre alphabétique </button>
+            <button class="btn btn-outline-primary btn-sm order" id="date-btn" > Date d'ajout </button>
+            <button class="btn btn-outline-primary btn-sm order" id="playlist-btn" > Playlists </button>
+            <button class="btn btn-outline-primary btn-sm order" id="search-btn" > Rechercher </button>
+          </div>
+        </nav>
+      </header>
+
+      <main role="main" class="inner">
+        <div class="list-group">
+
+          {% for index in musics_by_alpha.keys() %}
+            <p class="list-group-item list-group-item-success separator text-center alpha title" id="{{ index }}"> {{ index }} </p>
+
+            {% for music in musics_by_alpha[index] %}
+              <button type="button" class="btn btn-outline-success music list-group-item list-group-item-action alpha" name="{{ music["path"] }}" > {{ music["name"] }} </button>
+            {% endfor %}
+
+          {% endfor %}
+
+          {% for index in musics_by_date.keys() %}
+            <p class="list-group-item list-group-item-success separator text-center date d-none" id="{{ "Date_" + loop.index|string }}"> {{ musics_by_date[index][0]["date"] }} </p>
+
+            {% for music in musics_by_date[index] %}
+              <button type="button" class="btn btn-outline-success music list-group-item list-group-item-action date d-none" name="{{ music["path"] }}" > {{ music["name"] }} </button>
+            {% endfor %}
+
+          {% endfor %}
+
+          {% for index in musics_by_playlist.keys() %}
+            {% set playlistIndex = loop.index|string %}
+            <p class="list-group-item list-group-item-success separator text-center playlist playlist-btn d-none" id="{{ "Playlist_" + loop.index|string }}"> {{ index }} </p>
+
+            <div class="{{ "Playlist_" + playlistIndex }} playlist-div">
+              {% for music in musics_by_playlist[index] %}
+                <button type="button" class="btn btn-outline-success music list-group-item list-group-item-action {{ "Playlist_" + playlistIndex }}" name="{{ music["path"] }}" > {{ music["name"] }} </button>
+              {% endfor %}
+            </div>
+
+          {% endfor %}
+
+        </div>
+      </main>
+
+      <footer class="fixed-bottom text-center jumbotron">
+        <div class="container">
+          <span id="musicTitle"></span>
+          <audio></audio>
+
+        </div>
+      </footer>
+    </div>
+
+    <script src="{{url_for('static', filename='jquery.js')}}"></script>
+    <script src="{{url_for('static', filename='popper.min.js')}}"></script>
+    <script src="{{url_for('static', filename='common.js')}}"></script>
+    <script src="{{url_for('static', filename='post_request.js')}}"></script>
+    <script src="{{url_for('static', filename='smooth_scroll.js')}}"></script>
+    <script src="{{url_for('static', filename='bootstrap.min.js')}}"></script>
+	  <script src="{{url_for('static', filename='bootstrap3_player.js')}}"></script>
+
+  </body>
+</html>
